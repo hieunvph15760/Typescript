@@ -1,63 +1,77 @@
-import React from 'react';
-import '../../App.css';
-function Table(){
-    const students = [
-        {
-            name:"Nguyễn Văn Hiếu",
-            age:21,
-            phone: 12345678910,
-            image:"https://th.bing.com/th/id/OIP.Pa-48c6uXhOt0_DLY84RFgHaHa?w=203&h=203&c=7&r=0&o=5&dpr=1.5&pid=1.7"
-        },
-        {
-            name:"Nguyễn Văn Huy",
-            age:21,
-            phone: 12345678910,
-            image:"https://th.bing.com/th/id/OIP.Pa-48c6uXhOt0_DLY84RFgHaHa?w=203&h=203&c=7&r=0&o=5&dpr=1.5&pid=1.7"
-        },
-        {
-            name:"Nguyễn Văn Nam",
-            age:21,
-            phone: 12345678910,
-            image:"https://th.bing.com/th/id/OIP.Pa-48c6uXhOt0_DLY84RFgHaHa?w=203&h=203&c=7&r=0&o=5&dpr=1.5&pid=1.7"
-        },
-        {
-            name:"Nguyễn Văn Tuấn",
-            age:21,
-            phone: 12345678910,
-            image:"https://th.bing.com/th/id/OIP.Pa-48c6uXhOt0_DLY84RFgHaHa?w=203&h=203&c=7&r=0&o=5&dpr=1.5&pid=1.7"
-        },
-        {
-            name:"Nguyễn Văn Hoàng",
-            age:21,
-            phone: 12345678910,
-            image:"https://th.bing.com/th/id/OIP.Pa-48c6uXhOt0_DLY84RFgHaHa?w=203&h=203&c=7&r=0&o=5&dpr=1.5&pid=1.7"
-        },
-    ];
-    
-    
+import React, { useState } from 'react';
+
+type row = any;
+
+type cell = {
+    label:string,
+    key:string
+}    
+
+type TableProps = {
+    rows: row[],
+    headCells: cell[]
+}
+function Table({rows, headCells}:TableProps){
+
+const [nameStudent,setNameStudent] = useState<string>("");
+const [age,setAgeStudent] = useState<string>("");
+const [address,setAddressStudent] = useState<string>("");
+const [phone,setPhoneStudent] = useState<string>("");
+const [student,setStudent] = useState([{}])
+
+  const addStudent = () =>{
+    rows.push({
+        name:nameStudent,
+        age:age,
+        address:address,
+        phone:phone,
+    })
+    console.log(rows);
+    setStudent(rows);
+  }
     return (
-        <table className="table">
-            <thead className="thead">
-                <tr className="tr">
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Phone</th>
-                    <th>Image</th>
-                    <th>Delete</th>
-                </tr>
+        <>
+                <form action="">
+          <p>
+            <input type="text" placeholder='Name' onChange={(event)=> setNameStudent(event.target.value)} />
+          </p>
+          <p>
+            <input type="text" placeholder='Age'  onChange={(event)=> setAgeStudent(event.target.value)} />
+          </p> 
+          <p>
+            <input type="text" placeholder='Address' onChange={(event)=> setAddressStudent(event.target.value)} />
+          </p> 
+          <p>
+            <input type="text" placeholder='Phone' onChange={(event)=> setPhoneStudent(event.target.value)}/>
+          </p>
+          <button type='button' onClick={()=> addStudent()}>Thêm sinh viên</button>
+      </form>
+            <table>
+            <thead>
+               <tr>
+                   {
+                       headCells.map((head,index)=>(
+                           <th key={index}>{head.label}</th>
+                       ))
+                   }
+               </tr>
             </thead>
             <tbody>
-                { students.map((item)=>(
-                    <tr>
-                        <td className="td">{item.name}</td>
-                        <td className="td">{item.age}</td>
-                        <td className="td">{item.phone}</td>
-                        <td className="td"><img src={item.image} width="50px" alt=""/></td>
-                        <td className="td"><button className="btn">Xóa</button></td>
-                    </tr>))}
-
+                {
+                rows.map((row,index)=>(
+                    <tr key={index}>
+                        {
+                            headCells.map((head,index)=>(
+                                <td key={index}>{row[head.key]}</td>
+                            ))
+                        }
+                    </tr>
+                ))
+                }
             </tbody>
         </table>
+
+        </>
     )
 }
 export default Table;
