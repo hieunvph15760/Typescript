@@ -27,22 +27,26 @@ const [student,setStudent] = useState([{}])
         phone:phone,
     })
     console.log(rows);
-    setStudent(rows);
+    // setStudent(rows);
+    setNameStudent('');
+    setAgeStudent('');
+    setAddressStudent('');
+    setPhoneStudent('');
   }
     return (
         <>
                 <form action="">
           <p>
-            <input type="text" placeholder='Name' onChange={(event)=> setNameStudent(event.target.value)} />
+            <input type="text" placeholder='Name' value={nameStudent} onChange={(event)=> setNameStudent(event.target.value)} />
           </p>
           <p>
-            <input type="text" placeholder='Age'  onChange={(event)=> setAgeStudent(event.target.value)} />
+            <input type="text" placeholder='Age' value={age}  onChange={(event)=> setAgeStudent(event.target.value)} />
           </p> 
           <p>
-            <input type="text" placeholder='Address' onChange={(event)=> setAddressStudent(event.target.value)} />
+            <input type="text" placeholder='Address' value={address} onChange={(event)=> setAddressStudent(event.target.value)} />
           </p> 
           <p>
-            <input type="text" placeholder='Phone' onChange={(event)=> setPhoneStudent(event.target.value)}/>
+            <input type="text" placeholder='Phone' value={phone} onChange={(event)=> setPhoneStudent(event.target.value)}/>
           </p>
           <button type='button' onClick={()=> addStudent()}>Thêm sinh viên</button>
       </form>
