@@ -28,37 +28,6 @@
     color: #61dafb;
 }
 
-.table {
-    border: 1px solid gray;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    border-radius: 4px;
-}
-
-.thead {
-    color: white;
-    border: 1px solid gray;
-}
-
-.tr {
-    background-color: black;
-}
-
-.td {
-    background-color: orange;
-    color: black;
-    padding: 0px 10px;
-}
-
-.btn {
-    border-radius: 10px;
-    border: none;
-    padding: 4px 8px;
-    cursor: pointer;
-    background-color: red;
-    color: white;
-    font-weight: bold;
-}
 
 @keyframes App-logo-spin {
     from {
