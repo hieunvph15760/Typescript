@@ -1,23 +1,16 @@
 import React from "react";
 import {Outlet} from 'react-router-dom';
+import AdminHomePage from '../adminHomePage';
 type PropsType = {}
 
 function AdminLayout(props:PropsType){
     return (
-        <div>
-            <header>Admin page</header>
-            <div className='row'>
-                <div className='col-2'>
-                    <aside>Aside</aside>
-                </div>
-                <div className='col-10'>
-                    <main>
-                        Content
-                        <Outlet />
-                    </main>
-                </div>
-            </div>
-        </div>
+        <React.Fragment>
+            <AdminHomePage/>
+                <main>
+                    <Outlet />
+                </main>
+        </React.Fragment>
     )
 }
 export default AdminLayout;

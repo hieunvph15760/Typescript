@@ -6,7 +6,7 @@ import { StringLiteralLike } from 'typescript';
 type ProductType = {
     _id:string,
     name:string,
-    price:number|StringLiteralLike,
+    price:number,
     category:string
 }
 function ProductList() {

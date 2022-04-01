@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { createProductClone } from "../../api/products";
-import {useNavigate} from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { updateProductClone, getProduct } from "../../api/products";
+import {useNavigate, useParams} from 'react-router-dom';
 import {SubmitHandler, useForm} from 'react-hook-form';
 
 type Type = {
@@ -10,11 +10,11 @@ type Type = {
     category:string
 }
 
-function ProductFrom(){
+function ProductFromUpdate(){
 
-    const navigate = useNavigate();
-
-    const {register,handleSubmit,formState:{errors}} = useForm({
+    const {_id} = useParams();
+    
+    const {register,handleSubmit,formState:{errors},reset} = useForm({
         defaultValues:{
             name:'',
             price:'',
@@ -22,18 +22,27 @@ function ProductFrom(){
             category:''
         }
     });
-    
-    const onSubmit:SubmitHandler<Type> = async (data)=>{
-        const response = await createProductClone(data);
 
+    const handleGetProduct = async (id:string) =>{
+        const response = await getProduct(id);
         if(response.status === 200){
-            navigate('/products');
+            reset(response.data);
         }
+    }
+
+    useEffect(()=>{
+        if(_id){
+            handleGetProduct(_id);
+        }
+    },[_id])
+    
+    const onSubmit:SubmitHandler<Type> = (data:any)=>{
+        updateProductClone(_id,data);
     }
 
     return (
         <div>
-            <h1>Thêm mới sản phẩm</h1>
+            <h1>Sửa sản phẩm</h1>
             <div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <p>
@@ -61,4 +70,4 @@ function ProductFrom(){
     )
 };
 
-export default ProductFrom;
+export default ProductFromUpdate;

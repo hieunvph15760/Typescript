@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import AppClone from './app_clone';
+import Lab3_4 from './lab3_4';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AppClone />
+      <Lab3_4 />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

@@ -6,6 +6,8 @@ import Products from './pages/LayoutClone/products';
 import ProductsFrom from './pages/LayoutClone/productsFrom';
 import ProductsDetails from './pages/LayoutClone/productsDetails';
 import ClientLayout from './pages/LayoutClone/client_page'
+import Signup from "./pages/LayoutClone/signup";
+import ProductFromUpdate from './pages/LayoutClone/productUpdate';
 function AppClone() {
   return (
     <div className="App">
@@ -16,8 +18,9 @@ function AppClone() {
                         <Route index element={<Products />} />
                         <Route path={':_id'} element={<ProductsDetails />} />
                         <Route path={'create'} element={<ProductsFrom />} />
-                        <Route path={'edit/:_id'} element={<ProductsFrom />} />
+                        <Route path={'edit/:_id'} element={<ProductFromUpdate />} />
                     </Route>
+                    <Route path='/signup' element={<Signup/>} />
                 </Route>
       </Routes>    
     </div>

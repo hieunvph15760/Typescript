@@ -27,6 +27,32 @@
 .App-link {
     color: #61dafb;
 }
+.text{
+    font-family: 'Open Sans', sans-serif;
+}
+.title{
+    font-family: 'Open Sans', sans-serif;
+}
+.productsHover img{
+    transition: 0.6s;
+}
+.productsHover img:hover{
+    transform: scale(1.1);
+    transition: 0.6s;
+}
+.fixed{
+    background-color: rgba(255, 255, 255, 0.913);
+    z-index: 35;
+}
+#search{
+    transform: translateY(-100%);
+    transition: 0.6s;
+}
+#searchInput:checked ~ #search{
+    transform: translateY(0%);
+    transition: 0.6s;
+}
+
 
 
 @keyframes App-logo-spin {

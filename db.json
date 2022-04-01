@@ -1,14 +1,32 @@
 {
-    "products": [
-        {
-            "id": 1,
-            "name": "Iphone 12",
-            "price": 20000000
-        },
-        {
-            "id": 2,
-            "name": "Iphone 13",
-            "price": 30000000
-        }
-    ]
+  "categories": [
+    {
+      "id": 1,
+      "name": "Javascript"
+    },
+    {
+      "name": "PHP2",
+      "id": 3
+    }
+  ],
+  "books": [
+    {
+      "name": "javascript nâng cao",
+      "price": "800000",
+      "categories": "1",
+      "id": 1
+    },
+    {
+      "name": "PHP2",
+      "price": "400",
+      "categories": "2",
+      "id": 2
+    },
+    {
+      "name": "javascript nâng cao vjp pro max",
+      "price": "90000",
+      "categories": "1",
+      "id": 3
+    }
+  ]
 }

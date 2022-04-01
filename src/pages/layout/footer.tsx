@@ -5,8 +5,8 @@ function Footer (){
         <React.Fragment>
            <div className="w-full h-auto bg-[#1e1e27] mt-10 py-10">
                 <div className="text-white w-5/6 m-auto h-72 flex justify-between items-center">
-                    <div className="w-1/5 h-full pt-10 flex flex-col items-start">
-                        <div className="font-medium">
+                    <div className="w-1/5 h-full pt-10 flex flex-col items-start text-[#acacac]">
+                        <div className="font-medium text-white">
                             THỂ LOẠI
                         </div>
                         <div className="mt-10 flex flex-col items-start">
@@ -14,8 +14,8 @@ function Footer (){
                             <div className="">Nữ</div>
                         </div>
                     </div>
-                    <div className="w-1/5 h-full pt-10 flex flex-col items-start">
-                        <div className="font-medium">
+                    <div className="w-1/5 h-full pt-10 flex flex-col items-start text-[#acacac]">
+                        <div className="font-medium text-white">
                             CỨU GIÚP
                         </div>
                         <div className="mt-10 flex flex-col items-start">
@@ -25,8 +25,8 @@ function Footer (){
                             <div className="mt-3">Câu hỏi thường gặp</div>
                         </div>
                     </div>
-                    <div className="w-1/5 h-full pt-10 flex flex-col items-start">
-                        <div className="font-medium">
+                    <div className="w-1/5 h-full pt-10 flex flex-col items-start text-[#acacac]">
+                        <div className="font-medium text-white">
                             LIÊN LẠC
                         </div>
                         <div className="mt-10 flex flex-col items-start">
@@ -35,8 +35,8 @@ function Footer (){
                            </div>
                         </div>
                     </div>
-                    <div className="w-1/5 h-full pt-10 flex flex-col items-start">
-                        <div className="font-medium">
+                    <div className="w-1/5 h-full pt-10 flex flex-col items-start text-[#acacac]">
+                        <div className="font-medium text-white">
                             THÔNG TIN
                         </div>
                         <div className="mt-10 flex flex-col items-start">
