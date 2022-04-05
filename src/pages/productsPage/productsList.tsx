@@ -26,11 +26,6 @@ function ProductList() {
 
     const[searchName,setNameValue] = useState<ProductType[]>([]);
 
-    const handleSearch = async () =>{
-        const {data} = await searchProduct(input);
-        setNameValue(data);
-    }
-
     const[products,setProducts] = useState<ProductType[]>([]);
 
     const handleProducts = async()=>{
@@ -38,8 +33,11 @@ function ProductList() {
         setProducts(response.data);
     }
 
-    console.log(products);
-    
+    const handleSearch = async () =>{
+        const {data} = await searchProduct(input);
+        setNameValue(data);
+        setProducts([]);
+    }    
 
     useEffect(()=>{
         
@@ -49,7 +47,7 @@ function ProductList() {
             handleSearch();
         }
         
-    },[])
+    },[input])
 
     return (
         <React.Fragment>
@@ -67,7 +65,6 @@ function ProductList() {
                             </div>
                             <form style={{width:'600px'}} className="m-auto h-auto">
                                 <input type="text" placeholder="Tìm kiếm..." style={{width:'80%'}} className='py-3 rounded-lg pl-4 focus:outline-none' onChange={(event)=>inputValue(event.target.value)}/>
-                                <button onClick={()=> handleSearch()} style={{width:'15%'}} type="button" className="bg-red-500 outline-none ml-3 py-3 rounded-lg text-white">Tìm kiếm</button>
                             </form>
                         </div>
                 </div>

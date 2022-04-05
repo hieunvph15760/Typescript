@@ -1,14 +1,16 @@
 import React,{useState,useEffect} from "react";
 import { getProducts } from "../../api/products";
+import { getCategoris } from "../../api/categoris";
 import {Link} from "react-router-dom";
 import Banner from "../layout/banner";
 import BannerBottom from "../layout/bannerBottom";
 import post1 from "../../img/post1.jpg";
 import post2 from "../../img/post2.jpg";
 import post3 from "../../img/post3.jpg";
+import ProductCate from "./ProductsCate";
 
 type ProductType = {
-    _id:string|number,
+    _id:string,
     name:string,
     image:string,
     sale:number,
@@ -18,22 +20,74 @@ type ProductType = {
 
 function Homepage(){
 
+    // Danh mục
+    const [categories,setCategories] = useState<ProductType[]>([]);
+
+    // Sản phẩm
     const[products,setProducts] = useState<ProductType[]>([]);
 
-    const handleProducts = async ()=>{
-        const responsive = await getProducts();
-        setProducts(responsive.data);
+    // const[id,setId] = useState<any>('');
+
+    const clickCategory = (id:String) =>{
+        // setId(id);
+        // console.log(123);
+        products.map((product)=>(
+            id === product.category ?
+            <div className="h-auto w-64 text-center mb-5  rounded-sm productsHover" key={product._id}>
+            {product.sale === 0 ? null : <div className="text-white z-30 text font-bold bg-red-500 w-14 absolute mt-20 ml-40 flex justify-center items-center h-10 rounded-full">- {product.sale} %</div> }
+            <div>
+                <img src={product.image} style={{width:'250px'}}  className="mt-14 mb-3" alt="" />
+            </div>
+            <div className="flex text-black w-full justify-center">
+                <div className="mr-2 text-red-500 text font-extrabold">
+                    {new Intl.NumberFormat("VND", { style: "currency", currency: "VND" }).format(product.price - (product.price * product.sale / 100))}
+                </div>
+                <div className="text-[#b9b4c7] font-bold">
+                    {product.sale === 0 ? null : <del>{new Intl.NumberFormat("VND", { style: "currency", currency: "VND" }).format(product.price)}</del>}
+                </div>
+            </div>
+            <div className="text-black pb-3 text font-bold">
+                <Link to={`/products/${product._id}`}>{product.name}</Link>
+            </div>
+        </div> : null
+        ))
     }
     
-    console.log(products);
-    
     useEffect(()=>{
+        // Sản phẩm
+        const handleProducts = async ()=>{
+            const responsive = await getProducts();
+            setProducts(responsive.data);
+        }
+        // Danh mục
+        const handleCategories = async () =>{
+            const {data} = await getCategoris();
+            setCategories(data);
+        }
+
+        handleCategories();
         handleProducts();
     },[])
 
     return (
         <React.Fragment>
             <Banner/>
+            <div className="w-full h-auto my-16">
+                <div className="text-white w-5/6 m-auto h-auto">
+                    <div className="m-auto text-black text-4xl font-semibold title">SẢN PHẨM</div>
+                    <div className="bg-red-500 w-36 h-1 m-auto mt-2 mb-3"></div>
+                    <div className="text-black h-auto m-auto mt-7 flex" style={{width:'500px'}}>
+                        <div style={{border:'1px solid gray',borderTopLeftRadius:'8px'}} className="text bg-red-500 text font-bold text-white w-36 h-10 flex items-center justify-center">
+                            TẤT CẢ
+                        </div>
+                        {categories.map((item) =>(
+                             <div onClick={()=> clickCategory(item._id)} key={item._id} style={{border:'1px solid gray'}} className="text w-36 font-bold h-10 flex items-center justify-center">
+                                 {item.name}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
             <div className="w-full h-auto">
                 <div className="text-white w-5/6 m-auto auto flex justify-between flex-wrap">
                     {
