@@ -1,6 +1,7 @@
 import { create } from "domain";
 import React from "react";
 import { SubmitHandler,useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { createUser } from "../../../api/users";
 
 type user = {
@@ -29,12 +30,12 @@ function CreateUser(){
              </h2>
          </div>
          <div className="mt-5 flex lg:mt-0 lg:ml-4">
-             <a href="/admin/category" className="sm:ml-3">
-                 <button type="button" className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-           <svg className="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-           Quay lại
-         </button>
-             </a>
+         <Link to={'/admin/users'} className="sm:ml-3">
+                <button type="button" className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <svg className="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Quay lại
+        </button>
+            </Link>
              <span className="ml-3 relative sm:hidden">
          <button type="button" className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="mobile-menu-button" aria-expanded="false" aria-haspopup="true">
            More
@@ -48,17 +49,17 @@ function CreateUser(){
          </div>
      </header>
          <form className="ml-6 my-10" onSubmit={handleSubmit(onSubmit)}>
-         <div className="mb-3">
-             <label htmlFor="exampleInputEmail1" className="form-label flex justify-start">Tên</label>
-             <input type="text" className="form-control" id="addCate_name" {...register('name')} />
-             <label htmlFor="exampleInputEmail1" className="form-label flex justify-start">Email</label>
-             <input type="text" className="form-control" id="addCate_name" {...register('email')} />
-             <label htmlFor="exampleInputEmail1" className="form-label flex justify-start">Password</label>
-             <input type="text" className="form-control" id="addCate_name" {...register('password')}/>
-             <label htmlFor="exampleInputEmail1" className="form-label flex justify-start">Vai trò</label>
-             <input type="text" className="form-control" id="addCate_name" {...register('role')}/>
+         <div className="mb-3 flex flex-col">
+             <label htmlFor="exampleInputEmail1" className="flex justify-start">Tên</label>
+             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}} {...register('name')} />
+             <label htmlFor="exampleInputEmail1" className="flex justify-start">Email</label>
+             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}} {...register('email')} />
+             <label htmlFor="exampleInputEmail1" className="flex justify-start">Password</label>
+             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}} {...register('password')}/>
+             <label htmlFor="exampleInputEmail1" className="flex justify-start">Vai trò</label>
+             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}} {...register('role')}/>
          </div>
-         <button type="submit" className="float-left btn btn-primary bg-[#0d6efd]">Thêm</button>
+         <button type="submit" className="float-left text-white btn btn-primary bg-[#0d6efd] w-20 py-1 rounded-md">Thêm</button>
      </form>
         </React.Fragment>
      )

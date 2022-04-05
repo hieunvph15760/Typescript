@@ -39,7 +39,6 @@ function ListUsers(){
          <main>
              <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                  <div className="px-4 py-6 sm:px-0">
-                     <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
      <div className="flex flex-col">
      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -87,11 +86,6 @@ function ListUsers(){
            <td className="whitespace-nowrap">
              <div className="text-sm text-gray-900">{item.role}</div>
            </td>
-           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-           <div className="bg-red-500 w-12 h-6 flex justify-center items-cente rounded-sm">
-           <p className="text-white">Sửa</p>
-           </div>
-           </td>
            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"> 
            <div className="bg-red-500 w-12 h-6 flex justify-center cursor-pointer items-cente rounded-sm">
            <p onClick={()=>handleRemove(item._id)} className="text-white btnDelete">Xóa</p>
@@ -105,9 +99,8 @@ function ListUsers(){
      </div>
      </div>
      </div>
-                     </div>
-                 </div>
-             </div>
+      </div>
+        </div>
          </main>
         </React.Fragment>
      )

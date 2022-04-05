@@ -9,7 +9,7 @@ import {BrowserRouter} from 'react-router-dom';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Lab3_4 />
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

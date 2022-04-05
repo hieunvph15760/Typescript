@@ -9,9 +9,8 @@ import Homepage from './pages/homePage';
 import ListProductsAdmin from './pages/adminHomePage/Products/listProducts';
 import CreateProductsAdmin from './pages/adminHomePage/Products/createProducts';
 import ThongKe from './pages/adminHomePage/thongke';
-import AdminHomePage from './pages/adminHomePage';
 import{Routes, Route,Link} from 'react-router-dom';
-import Signup from './pages/LayoutClone/signup';
+import Signup from './pages/auth/signup';
 import Signin from './pages/auth/signin';
 import ListUsers from './pages/adminHomePage/Users/listUsers';
 import CreateUser from './pages/adminHomePage/Users/createUser';
@@ -20,6 +19,9 @@ import ListCategories from './pages/adminHomePage/Categories/listCategories';
 import Cart from './pages/cart/cart';
 import CreateCategories from './pages/adminHomePage/Categories/createCate';
 import UpdateCategories from './pages/adminHomePage/Categories/updateCate';
+import Contact from './pages/contact';
+import ListContact from './pages/adminHomePage/contact/listContact';
+import CheckOut from './pages/checkout/checkOut';
 function App() {
   return (
     <div className="App">
@@ -31,11 +33,12 @@ function App() {
                   <Route path={':_id'} element={<ProductDetails />} />
               </Route>
               <Route path='cart' element={<Cart/>} />
+              <Route path='contact' element={<Contact/>} />
+              <Route path='checkOut' element={<CheckOut/>} />
           </Route>
 
           <Route path='signup' element={<Signup/>} />
           <Route path='signin' element={<Signin/>} />
-          
 
           <Route path='admin' element={<AdminLayout />}>
               <Route index element={<ThongKe/>}/>
@@ -54,9 +57,10 @@ function App() {
                   <Route index element={<ListUsers />} />
                   <Route path={'create'} element={<CreateUser />} />
               </Route>
+              <Route path='contact'>
+                  <Route index element={<ListContact/>}/>
+              </Route>
           </Route>
-            
-         
       </Routes>    
     </div>
   );
