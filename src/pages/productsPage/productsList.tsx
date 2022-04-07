@@ -20,7 +20,6 @@ type TypeSearch = {
 }
 
 function ProductList() {
-    const navigate = useNavigate();
     
     const [input,inputValue] = useState<string>('');
 

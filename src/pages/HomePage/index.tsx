@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import { getProducts } from "../../api/products";
-import { getCategoris } from "../../api/categoris";
+import { getCategoris, getCategory } from "../../api/categoris";
 import {Link} from "react-router-dom";
 import Banner from "../layout/banner";
 import BannerBottom from "../layout/bannerBottom";
@@ -26,31 +26,20 @@ function Homepage(){
     // Sản phẩm
     const[products,setProducts] = useState<ProductType[]>([]);
 
-    // const[id,setId] = useState<any>('');
+    // Sản phẩm theo danh mục
+    const[category,setCategory] = useState<ProductType[]>([]);
 
-    const clickCategory = (id:String) =>{
-        // setId(id);
-        // console.log(123);
-        products.map((product)=>(
-            id === product.category ?
-            <div className="h-auto w-64 text-center mb-5  rounded-sm productsHover" key={product._id}>
-            {product.sale === 0 ? null : <div className="text-white z-30 text font-bold bg-red-500 w-14 absolute mt-20 ml-40 flex justify-center items-center h-10 rounded-full">- {product.sale} %</div> }
-            <div>
-                <img src={product.image} style={{width:'250px'}}  className="mt-14 mb-3" alt="" />
-            </div>
-            <div className="flex text-black w-full justify-center">
-                <div className="mr-2 text-red-500 text font-extrabold">
-                    {new Intl.NumberFormat("VND", { style: "currency", currency: "VND" }).format(product.price - (product.price * product.sale / 100))}
-                </div>
-                <div className="text-[#b9b4c7] font-bold">
-                    {product.sale === 0 ? null : <del>{new Intl.NumberFormat("VND", { style: "currency", currency: "VND" }).format(product.price)}</del>}
-                </div>
-            </div>
-            <div className="text-black pb-3 text font-bold">
-                <Link to={`/products/${product._id}`}>{product.name}</Link>
-            </div>
-        </div> : null
-        ))
+    const clickCategory = async (id:any) =>{
+        const {data} = await getCategory(id);
+        setCategory(data.products);
+        setProducts([]);
+    }
+    
+    // Show lại sản phẩm khi Click All
+    const showProducts = async () =>{
+        const responsive = await getProducts();
+        setProducts(responsive.data);
+        setCategory([])
     }
     
     useEffect(()=>{
@@ -67,7 +56,9 @@ function Homepage(){
 
         handleCategories();
         handleProducts();
+        
     },[])
+
 
     return (
         <React.Fragment>
@@ -76,8 +67,8 @@ function Homepage(){
                 <div className="text-white w-5/6 m-auto h-auto">
                     <div className="m-auto text-black text-4xl font-semibold title">SẢN PHẨM</div>
                     <div className="bg-red-500 w-36 h-1 m-auto mt-2 mb-3"></div>
-                    <div className="text-black h-auto m-auto mt-7 flex" style={{width:'500px'}}>
-                        <div style={{border:'1px solid gray',borderTopLeftRadius:'8px'}} className="text bg-red-500 text font-bold text-white w-36 h-10 flex items-center justify-center">
+                    <div className="text-black h-auto m-auto mt-7 cursor-pointer flex" style={{width:'500px'}}>
+                        <div onClick={()=>showProducts()} style={{border:'1px solid gray',borderTopLeftRadius:'8px'}} className="text bg-red-500 text font-bold text-white w-36 h-10 flex items-center justify-center">
                             TẤT CẢ
                         </div>
                         {categories.map((item) =>(
@@ -90,8 +81,32 @@ function Homepage(){
             </div>
             <div className="w-full h-auto">
                 <div className="text-white w-5/6 m-auto auto flex justify-between flex-wrap">
+                    {/* Products */}
                     {
                         products.map((item)=>(
+                            <div className="h-auto w-64 text-center mb-5  rounded-sm productsHover" key={item._id}>
+                                {item.sale === 0 ? null : <div className="text-white z-30 text font-bold bg-red-500 w-14 absolute mt-20 ml-40 flex justify-center items-center h-10 rounded-full">- {item.sale} %</div> }
+                                <div>
+                                    <img src={item.image} style={{width:'250px'}}  className="mt-14 mb-3" alt="" />
+                                </div>
+                                <div className="flex text-black w-full justify-center">
+                                    <div className="mr-2 text-red-500 text font-extrabold">
+                                        {new Intl.NumberFormat("VND", { style: "currency", currency: "VND" }).format(item.price - (item.price * item.sale / 100))}
+                                    </div>
+                                    <div className="text-[#b9b4c7] font-bold">
+                                        {item.sale === 0 ? null : <del>{new Intl.NumberFormat("VND", { style: "currency", currency: "VND" }).format(item.price)}</del>}
+                                    </div>
+                                </div>
+                                <div className="text-black pb-3 text font-bold">
+                                    <Link to={`/products/${item._id}`}>{item.name}</Link>
+                                </div>
+                            </div>
+                        ))
+                    }
+
+                    {/* Categories */}
+                    {
+                        category.map((item)=>(
                             <div className="h-auto w-64 text-center mb-5  rounded-sm productsHover" key={item._id}>
                                 {item.sale === 0 ? null : <div className="text-white z-30 text font-bold bg-red-500 w-14 absolute mt-20 ml-40 flex justify-center items-center h-10 rounded-full">- {item.sale} %</div> }
                                 <div>

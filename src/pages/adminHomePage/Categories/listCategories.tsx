@@ -22,16 +22,11 @@ function ListCategories(){
     },[])
 
     const handleDelete = async (id:string) =>{
-      const users = JSON.parse(localStorage.getItem('user')|| '');
       const choose = window.confirm("Bạn có muốn xóa không ?");
       if(choose){
-        if(users.user.role === 0){
-          alert("Bạn không phải là admin !");
-        }else{
-          const response = await remove(id);
+        const response = await remove(id);
           if(response.status === 200){
             handleCategories();
-          }
         }
       }
     }

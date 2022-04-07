@@ -46,6 +46,8 @@ function Cart() {
         setCount(i+=1);
     }
     
+    const total:any = []
+
     return (
         <React.Fragment>
         <div className="w-full h-auto">
@@ -116,6 +118,11 @@ function Cart() {
                             </div>
                         </div>
                         ))
+                    }
+                    {
+                        
+                        // Lưu localStorage Total
+                        localStorage.setItem("total",JSON.stringify(result))
                     }
                </div>
             </div>

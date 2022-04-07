@@ -20,17 +20,12 @@ function ListProductsAdmin(){
     }
 
     const handlDelete = async (_id:string) =>{
-      const users = JSON.parse(localStorage.getItem('user')|| '');
       const choose = window.confirm("Bạn có muốn xóa không ?");
       if(choose){
-        if(users.user.role === 0){
-          alert("Bạn không phải là admin !");
-        }else{
-          const response = await deleteProduct(_id);
+        const response = await deleteProduct(_id);
           if(response.status === 200){
              handleProducts();
           }
-        }
       }
     }
   

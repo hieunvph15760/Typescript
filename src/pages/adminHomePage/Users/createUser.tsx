@@ -1,7 +1,7 @@
 import { create } from "domain";
 import React from "react";
 import { SubmitHandler,useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../../../api/users";
 
 type user = {
@@ -13,10 +13,15 @@ type user = {
 
 function CreateUser(){
 
+    const navigate = useNavigate();
+
     const {register,handleSubmit} = useForm<user>();
 
-    const onSubmit:SubmitHandler<user> = (data) =>{
-        createUser(data);
+    const onSubmit:SubmitHandler<user> = async(data) =>{
+       const response = await createUser(data);
+       if(response.status === 200){
+           navigate("/admin/users");
+       }
     }
 
     return (

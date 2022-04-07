@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
-import {createProduct, getProducts} from '../../../api/products';
+import {useNavigate} from 'react-router-dom';
+import {createProduct} from '../../../api/products';
 import {useForm,SubmitHandler} from 'react-hook-form';
 import { getCategoris } from "../../../api/categoris";
 
@@ -16,16 +17,15 @@ type dataType = {
 
 function CreateroductsAdmin(){
     
+    const navigate = useNavigate();
+
     const [category,setCategory] = useState<dataType[]>([]);
-    const {handleSubmit,register} = useForm<dataType>();
+    const {handleSubmit,register,formState:{errors}} = useForm<dataType>();
 
     const onSubmit:SubmitHandler<dataType> = async (data) =>{   
-        const user = JSON.parse(localStorage.getItem('user') || '');
-        if(user.user.role === 0){
-            alert('Bạn không phải là Admin !');
-        }else{
-            const response = await createProduct(data);
-            console.log(response);
+        const response = await createProduct(data);
+        if(response.status === 200){
+            navigate('/admin/ProductsAdmin');
         }
     }
 
@@ -73,15 +73,20 @@ function CreateroductsAdmin(){
     <form className="ml-6 my-10 mb-20" onSubmit={handleSubmit(onSubmit)}>
          <div className="mb-3 flex flex-col">
              <label htmlFor="exampleInputEmail1"  className="flex justify-start">Tên</label>
-             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}} {...register('name')} />
+             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}} {...register('name',{required:true})} />
+             <span className="text-red-500 flex justify-start">{errors.name && "Bạn chưa nhập tên !"}</span>
              <label htmlFor="exampleInputEmail1" className="form-label flex justify-start">Giá</label>
-             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}}  {...register('price')} />
+             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}}  {...register('price',{required:true})} />
+             <span className="text-red-500 flex justify-start">{errors.price && "Bạn chưa nhập giá !"}</span>
              <label htmlFor="exampleInputEmail1" className="form-label flex justify-start">Sale</label>
-             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}}  {...register('sale')} />
+             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}}  {...register('sale',{required:true})} />
+             <span className="text-red-500 flex justify-start">{errors.sale && "Bạn chưa nhập sale !"}</span>
              <label htmlFor="exampleInputEmail1" className="form-label flex justify-start">Ảnh</label>
-             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}}  {...register('image')} />
+             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}}  {...register('image',{required:true})} />
+             <span className="text-red-500 flex justify-start">{errors.image && "Bạn chưa nhập ảnh !"}</span>
              <label htmlFor="exampleInputEmail1" className="form-label flex justify-start">Mô tả</label>
-             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}} {...register('description')}/>
+             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}} {...register('description',{required:true})}/>
+             <span className="text-red-500 flex justify-start">{errors.description && "Bạn chưa nhập mô tả !"}</span>
              <label htmlFor="exampleInputEmail1" className="form-label flex justify-start">Danh mục sản phẩm</label>
              <select {...register('category')} className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}}>
                  {

@@ -17,6 +17,7 @@ function AdminHomePage(){
                             <Link to={"/admin/productsAdmin"}><p className=" hover:bg-gray-700 hover:text-white text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Sản phẩm</p></Link>
                             <Link to={"/admin/users"}><p className=" hover:bg-gray-700 hover:text-white text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Người dùng</p></Link>
                             <Link to={"/admin/contact"}><p className=" hover:bg-gray-700 hover:text-white text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Liên hệ</p></Link>
+                            <Link to={"/admin/orders"}><p className=" hover:bg-gray-700 hover:text-white text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Đơn hàng</p></Link>
                         </div>
                     </div>
                 </div>

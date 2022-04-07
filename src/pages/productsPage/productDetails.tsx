@@ -100,7 +100,7 @@ function ProductDetail() {
                                     <input style={{border:'1px solid gray'}} value={count} type="text" className='w-8 mx-3 rounded-sm h-8 pl-3'/>
                                     <div className='w-10 h-8 bg-[#b9b4c7] rounded-md flex items-center justify-center' onClick={()=> prev()}>-</div>
                                </div>
-                            <div onClick={()=> handleCart()} style={{border:'1px solid gray'}} className="px-4 text  rounded-md border-none bg-red-500 text-white ml-2 h-8 flex justify-center items-center">
+                            <div onClick={()=> handleCart()} style={{border:'1px solid gray'}} className="px-4 text cursor-pointer rounded-md border-none bg-red-500 text-white ml-2 h-8 flex justify-center items-center">
                                 Thêm vào giỏ hảng
                             </div>
                         </div>

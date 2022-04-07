@@ -11,17 +11,12 @@ type dataType = {
 function CreateCategories(){
 
     const navigate = useNavigate();
-    const {register,handleSubmit} = useForm<dataType>();
+    const {register,handleSubmit,formState:{errors}} = useForm<dataType>();
 
     const onSubmit:SubmitHandler<dataType> = async (data) =>{
-        const users = JSON.parse(localStorage.getItem('user') || '');
-        if(users.user.role === 0){
-            alert("Bạn không phải là admin !");
-        }else{
-            const response = await create(data);
+        const response = await create(data);
             if(response.status === 200){
                 navigate('/admin/categories')
-            }
         }
     }
 
@@ -57,7 +52,8 @@ function CreateCategories(){
     <form className="ml-6 my-10 mb-20" onSubmit={handleSubmit(onSubmit)}>
          <div className="mb-3 flex flex-col">
              <label htmlFor="exampleInputEmail1"  className="flex justify-start">Tên</label>
-             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}} {...register('name')}/>
+             <input type="text" className="p-2 rounded-md mt-2" style={{border:'1px solid #b9b4c7'}} {...register('name',{required:true})}/>
+             <span className="text-red-500 flex jutify-start">{errors.name && "Bạn chưa nhập tên !"}</span>
          </div>
          <button type="submit" className="float-left text-white btn btn-primary bg-[#0d6efd] w-20 py-1 rounded-md">Thêm</button>
      </form>

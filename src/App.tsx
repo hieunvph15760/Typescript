@@ -22,6 +22,9 @@ import UpdateCategories from './pages/adminHomePage/Categories/updateCate';
 import Contact from './pages/contact';
 import ListContact from './pages/adminHomePage/contact/listContact';
 import CheckOut from './pages/checkout/checkOut';
+import ListOrders from './pages/adminHomePage/orders/listOrders';
+import ListOrdersDetails from './pages/adminHomePage/orders/ordersDetails';
+import PrivateRouter from "./pages/utils/privateRouter";
 function App() {
   return (
     <div className="App">
@@ -40,7 +43,7 @@ function App() {
           <Route path='signup' element={<Signup/>} />
           <Route path='signin' element={<Signin/>} />
 
-          <Route path='admin' element={<AdminLayout />}>
+          <Route path='admin' element={<PrivateRouter><AdminLayout/></PrivateRouter>}>
               <Route index element={<ThongKe/>}/>
               <Route path='productsAdmin'>
                   <Route index element={<ListProductsAdmin />}/>
@@ -59,6 +62,10 @@ function App() {
               </Route>
               <Route path='contact'>
                   <Route index element={<ListContact/>}/>
+              </Route>
+              <Route path='orders'>
+                  <Route index element={<ListOrders/>}/>
+                  <Route path=':id' element={< ListOrdersDetails/>}/>
               </Route>
           </Route>
       </Routes>    
