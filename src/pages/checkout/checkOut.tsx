@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {FaArrowAltCircleRight} from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
 import {useForm,SubmitHandler} from "react-hook-form";
 import { addOrder } from '../../api/order';
 import { addOrderDetails } from '../../api/orderDetails';
@@ -24,8 +23,6 @@ type ProductType = {
 
 function CheckOut() {
 
-    const navigate = useNavigate();
-
     // Cart
     let cart:any = [];
         if (localStorage.getItem("cart")) {
@@ -43,7 +40,6 @@ function CheckOut() {
     const total = JSON.parse(localStorage.getItem('total')||"");
     console.log(total);
     
-
     // Them vao orderDetails
     cart.map((item:ProductType)=>(
         orderDetais.push({

@@ -18,8 +18,6 @@ function Signin (){
     const onSubmit:SubmitHandler<signinType> = async (data) => {
         const {data:user} = await signin(data);
         localStorage.setItem('user',JSON.stringify(user));
-        console.log("ok");
-        
         navigate('/');
     }
 

@@ -40,10 +40,6 @@ export const searchProduct = (data:any) =>{
     return instance.get(`/productsSearch?q=${data}`)
 }
 
-export const createProductClone = (data:any)=>{
-    return instance.post("/products/",data);
-}
-
-export const updateProductClone = (id:string|undefined,data:any)=>{
-    return instance.put(`/products/${id}`,data);
+export const sortProducts = (data:any) =>{
+    return instance.get(`/productsSort?sort=${data}`);
 }

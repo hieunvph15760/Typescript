@@ -21,7 +21,6 @@ type Type = {
 function ListOrdersDetails(){
 
     const {id} = useParams();
-    console.log(id);
     
     const[ordersDetails,setOrdersDetails] = useState<Type[]>([]);
     

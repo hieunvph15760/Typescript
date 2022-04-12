@@ -3,20 +3,14 @@ import {Link,useNavigate} from "react-router-dom";
 import {FaShoppingCart,FaSignInAlt } from 'react-icons/fa';
 import logo from "../../img/logo.png";
 
-
-type dataType = {
-    _id:string,
-    name:string,
-    price:string|number,
-    sale:number,
-    image:string,
-    category:string,
-    description:string  
-}
-
 function Header(){
 
     const navigate = useNavigate();
+
+    let users;
+    if(localStorage.getItem('user')){
+        users = JSON.parse(localStorage.getItem('user') || "");
+    }
 
     const handlLogout = () =>{
         localStorage.removeItem('user');
@@ -30,8 +24,11 @@ function Header(){
                     GIAO HÀNG MIỄN PHÍ TRÊN TOÀN QUỐC KHI MUA 5 SẢN PHẨM TRỞ LÊN !
                 </div>
                 <div className="w-2/4 h-full flex justify-end items-center text-xs font-bold">
+                    <span>
+                        {users ? users.user.role === 1 ? <div>Xin chào {users.user.name} <Link to={"/admin"}> <span className="px-3">Trang quản trị</span> </Link> </div>: <div className="mr-3">Xin chào {users.user.name}</div> : null}
+                    </span>
                     {
-                        localStorage.getItem('user') ? <div onClick={()=> handlLogout()}><Link to={'/'}>Đăng xuất</Link></div> : <div className="flex"><div className="mr-4"><Link to={'/signin'}><div className="flex"><div className="mt-1 mr-2"><FaSignInAlt/></div><div>Đăng nhập</div></div></Link></div><div><Link to={'/signup'}>Đăng ký</Link></div></div>
+                        users ? <div onClick={()=> handlLogout()}><Link to={'/'}>Đăng xuất</Link></div> : <div className="flex"><div className="mr-4"><Link to={'/signin'}><div className="flex"><div className="mt-1 mr-2"><FaSignInAlt/></div><div>Đăng nhập</div></div></Link></div><div><Link to={'/signup'}>Đăng ký</Link></div></div>
                     }
                 </div>
             </div>

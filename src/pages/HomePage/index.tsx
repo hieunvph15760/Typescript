@@ -7,7 +7,6 @@ import BannerBottom from "../layout/bannerBottom";
 import post1 from "../../img/post1.jpg";
 import post2 from "../../img/post2.jpg";
 import post3 from "../../img/post3.jpg";
-import ProductCate from "./ProductsCate";
 
 type ProductType = {
     _id:string,

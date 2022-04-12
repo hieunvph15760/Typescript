@@ -32,21 +32,12 @@ function Cart() {
     let result:number = 0;
 
     
-
     // Remove cart 
     const removeCart = (id:string) =>{
         cart = cart.filter((item:ProductType)=> item._id !== id)
         localStorage.setItem('cart',JSON.stringify(cart));
         navigate('/cart')
     }
-
-    let [count,setCount] = useState<number>();
-
-    const next = (i:number) =>{;
-        setCount(i+=1);
-    }
-    
-    const total:any = []
 
     return (
         <React.Fragment>
@@ -99,7 +90,7 @@ function Cart() {
                                 <div>
                                     <input type="number" value={item.quantity} className='w-10 text-center pl-2'/>
                                 </div>
-                                <div onClick={()=>next(item.quantity)} className='bg-[#b9b4c7] w-8 rounded-sm'>
+                                <div className='bg-[#b9b4c7] w-8 rounded-sm'>
                                     +
                                 </div>
                             </div>
@@ -120,7 +111,6 @@ function Cart() {
                         ))
                     }
                     {
-                        
                         // Lưu localStorage Total
                         localStorage.setItem("total",JSON.stringify(result))
                     }
