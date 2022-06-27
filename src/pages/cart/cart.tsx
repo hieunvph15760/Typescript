@@ -31,6 +31,13 @@ function Cart() {
     let sum:number = 0;
     let result:number = 0;
 
+    const tang = (id:string) =>{
+        cart.map((item:any)=>{
+            if(item.id === id){
+                item.quantity +=1;
+            }
+        })
+    }
     
     // Remove cart 
     const removeCart = (id:string) =>{
@@ -38,6 +45,7 @@ function Cart() {
         localStorage.setItem('cart',JSON.stringify(cart));
         navigate('/cart')
     }
+
 
     return (
         <React.Fragment>

@@ -96,9 +96,9 @@ function ProductDetail() {
                         <div className="mt-3 flex">
                                <div className='mt-1 mr-2'>Số lượng:</div> 
                                <div className='flex'>
-                                    <div className='w-10 h-8 bg-[#b9b4c7] rounded-md flex items-center justify-center' onClick={()=> next()}>+</div>
+                                    <div className='w-10 h-8 bg-[#b9b4c7] rounded-md flex cursor-pointer items-center justify-center' onClick={()=> next()}>+</div>
                                     <input style={{border:'1px solid gray'}} value={count} type="text" className='w-8 mx-3 rounded-sm h-8 pl-3'/>
-                                    <div className='w-10 h-8 bg-[#b9b4c7] rounded-md flex items-center justify-center' onClick={()=> prev()}>-</div>
+                                    <div className='w-10 h-8 bg-[#b9b4c7] rounded-md flex cursor-pointer items-center justify-center' onClick={()=> prev()}>-</div>
                                </div>
                             <div onClick={()=> handleCart()} style={{border:'1px solid gray'}} className="px-4 text cursor-pointer rounded-md border-none bg-red-500 text-white ml-2 h-8 flex justify-center items-center">
                                 Thêm vào giỏ hảng

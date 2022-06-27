@@ -20,6 +20,7 @@ function CreateroductsAdmin(){
     const navigate = useNavigate();
 
     const [category,setCategory] = useState<dataType[]>([]);
+    
     const {handleSubmit,register,formState:{errors}} = useForm<dataType>();
 
     const onSubmit:SubmitHandler<dataType> = async (data) =>{   

@@ -1,4 +1,3 @@
-import React,{useState} from 'react';
 import './App.css';
 import './index.css';
 import ClientLayout from './pages/layout/ClientLayout';
@@ -9,7 +8,7 @@ import Homepage from './pages/homePage';
 import ListProductsAdmin from './pages/adminHomePage/Products/listProducts';
 import CreateProductsAdmin from './pages/adminHomePage/Products/createProducts';
 import ThongKe from './pages/adminHomePage/thongke';
-import{Routes, Route,Link} from 'react-router-dom';
+import{Routes, Route} from 'react-router-dom';
 import Signup from './pages/auth/signup';
 import Signin from './pages/auth/signin';
 import ListUsers from './pages/adminHomePage/Users/listUsers';

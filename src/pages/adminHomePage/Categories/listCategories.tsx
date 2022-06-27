@@ -17,7 +17,6 @@ function ListCategories(){
     }
 
     useEffect(() => {
-      
         handleCategories();
     },[])
 
@@ -25,7 +24,7 @@ function ListCategories(){
       const choose = window.confirm("Bạn có muốn xóa không ?");
       if(choose){
         const response = await remove(id);
-          if(response.status === 200){
+          if(response.status === 201){
             handleCategories();
         }
       }
